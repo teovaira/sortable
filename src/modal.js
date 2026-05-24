@@ -43,6 +43,33 @@ export function openModal(hero) {
       </div>
     </div>
 
+    <section class="hero-info-grid">
+      <div class="hero-info-card">
+        <span>Race</span>
+        <strong>${display(hero.appearance.race)}</strong>
+      </div>
+
+      <div class="hero-info-card">
+        <span>Gender</span>
+        <strong>${display(hero.appearance.gender)}</strong>
+      </div>
+
+      <div class="hero-info-card">
+        <span>Height</span>
+        <strong>${display(hero.appearance.height?.[1])}</strong>
+      </div>
+
+      <div class="hero-info-card">
+        <span>Weight</span>
+        <strong>${display(hero.appearance.weight?.[1])}</strong>
+      </div>
+
+      <div class="hero-info-card wide">
+        <span>Place of Birth</span>
+        <strong>${display(hero.biography.placeOfBirth)}</strong>
+      </div>
+    </section>
+
     <section class="powerstats">
       <h3>Powerstats</h3>
 
@@ -74,33 +101,6 @@ export function openModal(hero) {
       <div class="stat-row">
         <span>Combat</span>
         <strong>${display(hero.powerstats.combat)}</strong>
-      </div>
-    </section>
-
-    <section class="hero-info-grid">
-      <div class="hero-info-card">
-        <span>Race</span>
-        <strong>${display(hero.appearance.race)}</strong>
-      </div>
-
-      <div class="hero-info-card">
-        <span>Gender</span>
-        <strong>${display(hero.appearance.gender)}</strong>
-      </div>
-
-      <div class="hero-info-card">
-        <span>Height</span>
-        <strong>${display(hero.appearance.height?.[1])}</strong>
-      </div>
-
-      <div class="hero-info-card">
-        <span>Weight</span>
-        <strong>${display(hero.appearance.weight?.[1])}</strong>
-      </div>
-
-      <div class="hero-info-card wide">
-        <span>Place of Birth</span>
-        <strong>${display(hero.biography.placeOfBirth)}</strong>
       </div>
     </section>
   </article>
