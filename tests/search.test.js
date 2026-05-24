@@ -1,25 +1,5 @@
-import { expect, test, vi } from 'vitest'
+import { expect, test } from 'vitest'
 import { filterHeroes, parseQuery } from '../src/search.js'
-
-vi.mock('../src/data.js', () => ({
-  getField: (hero, path) => {
-    const parts = path.split('.')
-    let value = hero
-    for (const part of parts) {
-      if (value == null) return null
-      value = value[part]
-    }
-    if (value === null || value === undefined || value === '-' || value === '') return null
-    return value
-  },
-  getHeightMetric: (hero) => hero?.appearance?.height?.[1] ?? null,
-  getWeightMetric: (hero) => hero?.appearance?.weight?.[1] ?? null,
-  parseMetricNumber: (str) => {
-    if (!str) return null
-    const n = parseFloat(str)
-    return isNaN(n) || n === 0 ? null : n
-  },
-}))
 
 const batman = { id: 1, name: 'Batman' }
 const thor = { id: 2, name: 'Thor' }
