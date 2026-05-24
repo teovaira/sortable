@@ -45,6 +45,32 @@ test('parseQuery include — returns false when field value is ""', () => {
   expect(fn({ biography: { fullName: '' } })).toBe(false)
 })
 
+// parseQuery — height/weight numeric search
+test('parseQuery > height — true when metric height greater than threshold', () => {
+  const fn = parseQuery('>180', 'appearance.height')
+  expect(fn({ appearance: { height: ["6'8", '203 cm'] } })).toBe(true)
+})
+
+test('parseQuery > height — false when metric height less than threshold', () => {
+  const fn = parseQuery('>180', 'appearance.height')
+  expect(fn({ appearance: { height: ["5'0", '152 cm'] } })).toBe(false)
+})
+
+test('parseQuery > height — false when height is missing', () => {
+  const fn = parseQuery('>180', 'appearance.height')
+  expect(fn({ appearance: { height: ['-', '0 cm'] } })).toBe(false)
+})
+
+test('parseQuery > weight — true when metric weight greater than threshold', () => {
+  const fn = parseQuery('>80', 'appearance.weight')
+  expect(fn({ appearance: { weight: ['980 lb', '441 kg'] } })).toBe(true)
+})
+
+test('parseQuery > weight — false when weight is missing', () => {
+  const fn = parseQuery('>80', 'appearance.weight')
+  expect(fn({ appearance: { weight: ['-', '0 kg'] } })).toBe(false)
+})
+
 // parseQuery — numeric operators
 test('parseQuery > — true when value greater than threshold', () => {
   const fn = parseQuery('>80', 'powerstats.intelligence')
