@@ -45,6 +45,22 @@ test('parseQuery include — returns false when field value is ""', () => {
   expect(fn({ biography: { fullName: '' } })).toBe(false)
 })
 
+// parseQuery — exclude operator
+test('parseQuery exclude — filters out hero whose name contains query', () => {
+  const fn = parseQuery('!man', 'name')
+  expect(fn({ name: 'Batman' })).toBe(false)
+})
+
+test('parseQuery exclude — passes hero whose name does not contain query', () => {
+  const fn = parseQuery('!man', 'name')
+  expect(fn({ name: 'Thor' })).toBe(true)
+})
+
+test('parseQuery exclude — returns false when field value is null', () => {
+  const fn = parseQuery('!man', 'name')
+  expect(fn({ name: null })).toBe(false)
+})
+
 // filterHeroes
 test('filterHeroes — null filterFn returns full array unchanged', () => {
   expect(filterHeroes(heroes, null)).toBe(heroes)
