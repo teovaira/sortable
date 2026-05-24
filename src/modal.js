@@ -9,23 +9,102 @@ export function openModal(hero) {
   const modal = document.getElementById('modal')
   const content = document.getElementById('modalContent')
 
+  // Old modal
+  // content.innerHTML = `
+  //   <img src="${hero.images.lg}" alt="${hero.name}" />
+  //   <h2>${hero.name}</h2>
+  //   <p><strong>Full Name:</strong> ${display(hero.biography.fullName)}</p>
+  //   <p><strong>Alignment:</strong> ${display(hero.biography.alignment)}</p>
+  //   <p><strong>Place of Birth:</strong> ${display(hero.biography.placeOfBirth)}</p>
+  //   <p><strong>Gender:</strong> ${display(hero.appearance.gender)}</p>
+  //   <p><strong>Race:</strong> ${display(hero.appearance.race)}</p>
+  //   <p><strong>Height:</strong> ${display(hero.appearance.height?.[1])}</p>
+  //   <p><strong>Weight:</strong> ${display(hero.appearance.weight?.[1])}</p>
+  //   <p><strong>Intelligence:</strong> ${display(hero.powerstats.intelligence)}</p>
+  //   <p><strong>Strength:</strong> ${display(hero.powerstats.strength)}</p>
+  //   <p><strong>Speed:</strong> ${display(hero.powerstats.speed)}</p>
+  //   <p><strong>Durability:</strong> ${display(hero.powerstats.durability)}</p>
+  //   <p><strong>Power:</strong> ${display(hero.powerstats.power)}</p>
+  //   <p><strong>Combat:</strong> ${display(hero.powerstats.combat)}</p>
+  // `
+
+  modal.classList.remove('closing')
+
   content.innerHTML = `
-    <img src="${hero.images.lg}" alt="${hero.name}" />
-    <h2>${hero.name}</h2>
-    <p><strong>Full Name:</strong> ${display(hero.biography.fullName)}</p>
-    <p><strong>Alignment:</strong> ${display(hero.biography.alignment)}</p>
-    <p><strong>Place of Birth:</strong> ${display(hero.biography.placeOfBirth)}</p>
-    <p><strong>Gender:</strong> ${display(hero.appearance.gender)}</p>
-    <p><strong>Race:</strong> ${display(hero.appearance.race)}</p>
-    <p><strong>Height:</strong> ${display(hero.appearance.height?.[1])}</p>
-    <p><strong>Weight:</strong> ${display(hero.appearance.weight?.[1])}</p>
-    <p><strong>Intelligence:</strong> ${display(hero.powerstats.intelligence)}</p>
-    <p><strong>Strength:</strong> ${display(hero.powerstats.strength)}</p>
-    <p><strong>Speed:</strong> ${display(hero.powerstats.speed)}</p>
-    <p><strong>Durability:</strong> ${display(hero.powerstats.durability)}</p>
-    <p><strong>Power:</strong> ${display(hero.powerstats.power)}</p>
-    <p><strong>Combat:</strong> ${display(hero.powerstats.combat)}</p>
-  `
+  <article class="hero-profile">
+    <div class="hero-profile-header">
+      <img class="hero-profile-image" src="${display(hero.images.lg)}" alt="${display(hero.name)}" />
+
+      <div class="hero-profile-main">
+        <p class="comic-label">Hero File</p>
+        <h2>${display(hero.name)}</h2>
+        <p class="hero-full-name">${display(hero.biography.fullName)}</p>
+        <span class="alignment-badge">${display(hero.biography.alignment)}</span>
+      </div>
+    </div>
+
+    <section class="powerstats">
+      <h3>Powerstats</h3>
+
+      <div class="stat-row">
+        <span>Intelligence</span>
+        <strong>${display(hero.powerstats.intelligence)}</strong>
+      </div>
+
+      <div class="stat-row">
+        <span>Strength</span>
+        <strong>${display(hero.powerstats.strength)}</strong>
+      </div>
+
+      <div class="stat-row">
+        <span>Speed</span>
+        <strong>${display(hero.powerstats.speed)}</strong>
+      </div>
+
+      <div class="stat-row">
+        <span>Durability</span>
+        <strong>${display(hero.powerstats.durability)}</strong>
+      </div>
+
+      <div class="stat-row">
+        <span>Power</span>
+        <strong>${display(hero.powerstats.power)}</strong>
+      </div>
+
+      <div class="stat-row">
+        <span>Combat</span>
+        <strong>${display(hero.powerstats.combat)}</strong>
+      </div>
+    </section>
+
+    <section class="hero-info-grid">
+      <div class="hero-info-card">
+        <span>Race</span>
+        <strong>${display(hero.appearance.race)}</strong>
+      </div>
+
+      <div class="hero-info-card">
+        <span>Gender</span>
+        <strong>${display(hero.appearance.gender)}</strong>
+      </div>
+
+      <div class="hero-info-card">
+        <span>Height</span>
+        <strong>${display(hero.appearance.height?.[1])}</strong>
+      </div>
+
+      <div class="hero-info-card">
+        <span>Weight</span>
+        <strong>${display(hero.appearance.weight?.[1])}</strong>
+      </div>
+
+      <div class="hero-info-card wide">
+        <span>Place of Birth</span>
+        <strong>${display(hero.biography.placeOfBirth)}</strong>
+      </div>
+    </section>
+  </article>
+`
 
   modal.classList.add('open')
 }
@@ -34,7 +113,16 @@ export function closeModal() {
   const modal = document.getElementById('modal')
   const content = document.getElementById('modalContent')
 
-  modal.classList.remove('open')
-  content.innerHTML = ''
-  setActiveHero(null)
+  if (!modal.classList.contains('open')) return
+
+  modal.classList.add('closing')
+
+  setTimeout(() => {
+    modal.classList.remove('open')
+    modal.classList.remove('closing')
+    content.innerHTML = ''
+    setActiveHero(null)
+  }, 180)
 }
+
+document.getElementById("modalClose").addEventListener("click", e => {closeModal()})
