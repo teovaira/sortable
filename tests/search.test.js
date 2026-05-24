@@ -45,6 +45,27 @@ test('parseQuery include — returns false when field value is ""', () => {
   expect(fn({ biography: { fullName: '' } })).toBe(false)
 })
 
+// parseQuery — fuzzy operator
+test('parseQuery fuzzy — matches when all chars appear in order', () => {
+  const fn = parseQuery('~bat', 'name')
+  expect(fn({ name: 'Batman' })).toBe(true)
+})
+
+test('parseQuery fuzzy — matches non-consecutive chars in order', () => {
+  const fn = parseQuery('~bman', 'name')
+  expect(fn({ name: 'Batman' })).toBe(true)
+})
+
+test('parseQuery fuzzy — no match when chars not in order', () => {
+  const fn = parseQuery('~xyz', 'name')
+  expect(fn({ name: 'Batman' })).toBe(false)
+})
+
+test('parseQuery fuzzy — returns false when field value is null', () => {
+  const fn = parseQuery('~bat', 'name')
+  expect(fn({ name: null })).toBe(false)
+})
+
 // parseQuery — exclude operator
 test('parseQuery exclude — filters out hero whose name contains query', () => {
   const fn = parseQuery('!man', 'name')
