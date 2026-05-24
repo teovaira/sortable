@@ -45,6 +45,57 @@ test('parseQuery include — returns false when field value is ""', () => {
   expect(fn({ biography: { fullName: '' } })).toBe(false)
 })
 
+// parseQuery — numeric operators
+test('parseQuery > — true when value greater than threshold', () => {
+  const fn = parseQuery('>80', 'powerstats.intelligence')
+  expect(fn({ powerstats: { intelligence: 90 } })).toBe(true)
+})
+
+test('parseQuery > — false when value less than threshold', () => {
+  const fn = parseQuery('>80', 'powerstats.intelligence')
+  expect(fn({ powerstats: { intelligence: 70 } })).toBe(false)
+})
+
+test('parseQuery > — false when value is null', () => {
+  const fn = parseQuery('>80', 'powerstats.intelligence')
+  expect(fn({ powerstats: { intelligence: null } })).toBe(false)
+})
+
+test('parseQuery < — true when value less than threshold', () => {
+  const fn = parseQuery('<50', 'powerstats.strength')
+  expect(fn({ powerstats: { strength: 30 } })).toBe(true)
+})
+
+test('parseQuery < — false when value greater than threshold', () => {
+  const fn = parseQuery('<50', 'powerstats.strength')
+  expect(fn({ powerstats: { strength: 70 } })).toBe(false)
+})
+
+test('parseQuery = — true when value equals threshold', () => {
+  const fn = parseQuery('=100', 'powerstats.strength')
+  expect(fn({ powerstats: { strength: 100 } })).toBe(true)
+})
+
+test('parseQuery = — false when value does not equal threshold', () => {
+  const fn = parseQuery('=100', 'powerstats.strength')
+  expect(fn({ powerstats: { strength: 99 } })).toBe(false)
+})
+
+test('parseQuery != — false when value equals threshold', () => {
+  const fn = parseQuery('!=100', 'powerstats.strength')
+  expect(fn({ powerstats: { strength: 100 } })).toBe(false)
+})
+
+test('parseQuery != — true when value does not equal threshold', () => {
+  const fn = parseQuery('!=100', 'powerstats.strength')
+  expect(fn({ powerstats: { strength: 99 } })).toBe(true)
+})
+
+test('parseQuery != — false when value is null', () => {
+  const fn = parseQuery('!=100', 'powerstats.strength')
+  expect(fn({ powerstats: { strength: null } })).toBe(false)
+})
+
 // parseQuery — fuzzy operator
 test('parseQuery fuzzy — matches when all chars appear in order', () => {
   const fn = parseQuery('~bat', 'name')
