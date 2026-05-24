@@ -1,5 +1,11 @@
-import { expect, test, beforeEach } from 'vitest'
+import { expect, test, vi, beforeEach } from 'vitest'
 import { openModal, closeModal } from '../src/modal.js'
+
+vi.mock('../src/state.js', () => ({
+  setActiveHero: vi.fn(),
+}))
+
+import { setActiveHero } from '../src/state.js'
 
 const hero = {
   id: 1,
@@ -64,4 +70,10 @@ test('closeModal — clears #modalContent', () => {
   openModal(hero)
   closeModal()
   expect(document.getElementById('modalContent').innerHTML).toBe('')
+})
+
+test('closeModal — calls setActiveHero(null)', () => {
+  openModal(hero)
+  closeModal()
+  expect(setActiveHero).toHaveBeenCalledWith(null)
 })
