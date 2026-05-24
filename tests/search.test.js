@@ -1,10 +1,51 @@
 import { expect, test } from 'vitest'
-import { filterHeroes } from '../src/search.js'
+import { filterHeroes, parseQuery } from '../src/search.js'
 
 const batman = { id: 1, name: 'Batman' }
 const thor = { id: 2, name: 'Thor' }
 const heroes = [batman, thor]
 
+// parseQuery — empty
+test('parseQuery — empty string returns null', () => {
+  expect(parseQuery('', 'name')).toBeNull()
+})
+
+test('parseQuery — whitespace-only returns null', () => {
+  expect(parseQuery('  ', 'name')).toBeNull()
+})
+
+// parseQuery — include (default operator)
+test('parseQuery include — matches hero whose name contains query', () => {
+  const fn = parseQuery('man', 'name')
+  expect(fn({ name: 'Batman' })).toBe(true)
+})
+
+test('parseQuery include — no match when name does not contain query', () => {
+  const fn = parseQuery('man', 'name')
+  expect(fn({ name: 'Thor' })).toBe(false)
+})
+
+test('parseQuery include — case-insensitive', () => {
+  const fn = parseQuery('MAN', 'name')
+  expect(fn({ name: 'batman' })).toBe(true)
+})
+
+test('parseQuery include — returns false when field value is null', () => {
+  const fn = parseQuery('man', 'name')
+  expect(fn({ name: null })).toBe(false)
+})
+
+test('parseQuery include — returns false when field value is "-"', () => {
+  const fn = parseQuery('man', 'biography.placeOfBirth')
+  expect(fn({ biography: { placeOfBirth: '-' } })).toBe(false)
+})
+
+test('parseQuery include — returns false when field value is ""', () => {
+  const fn = parseQuery('man', 'biography.fullName')
+  expect(fn({ biography: { fullName: '' } })).toBe(false)
+})
+
+// filterHeroes
 test('filterHeroes — null filterFn returns full array unchanged', () => {
   expect(filterHeroes(heroes, null)).toBe(heroes)
 })
