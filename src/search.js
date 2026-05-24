@@ -1,4 +1,4 @@
-import { getField } from './data.js'
+import { getField, getHeightMetric, getWeightMetric, parseMetricNumber } from './data.js'
 
 function isMissing(value) {
   return value === null || value === '-' || value === ''
@@ -14,8 +14,50 @@ function fuzzyMatch(pattern, str) {
   return true
 }
 
+function getNumericValue(hero, field) {
+  if (field === 'appearance.height') return parseMetricNumber(getHeightMetric(hero))
+  if (field === 'appearance.weight') return parseMetricNumber(getWeightMetric(hero))
+  return getField(hero, field)
+}
+
 export function parseQuery(query, field) {
   if (!query || !query.trim()) return null
+
+  if (query.startsWith('!=')) {
+    const n = parseFloat(query.slice(2))
+    return (hero) => {
+      const value = getNumericValue(hero, field)
+      if (value === null) return false
+      return value !== n
+    }
+  }
+
+  if (query.startsWith('>')) {
+    const n = parseFloat(query.slice(1))
+    return (hero) => {
+      const value = getNumericValue(hero, field)
+      if (value === null) return false
+      return value > n
+    }
+  }
+
+  if (query.startsWith('<')) {
+    const n = parseFloat(query.slice(1))
+    return (hero) => {
+      const value = getNumericValue(hero, field)
+      if (value === null) return false
+      return value < n
+    }
+  }
+
+  if (query.startsWith('=')) {
+    const n = parseFloat(query.slice(1))
+    return (hero) => {
+      const value = getNumericValue(hero, field)
+      if (value === null) return false
+      return value === n
+    }
+  }
 
   if (query.startsWith('~')) {
     const pattern = query.slice(1).toLowerCase()
