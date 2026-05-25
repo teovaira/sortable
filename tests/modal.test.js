@@ -1,5 +1,11 @@
-import { expect, test, beforeEach } from 'vitest'
+import { expect, test, beforeEach, vi } from 'vitest'
 import { openModal, closeModal } from '../src/modal.js'
+
+vi.mock('../src/state.js', () => ({
+  setActiveHero: vi.fn()
+}))
+
+import { setActiveHero } from '../src/state.js'
 
 const hero = {
   id: 1,
@@ -14,6 +20,8 @@ const hero = {
 }
 
 beforeEach(() => {
+  vi.clearAllMocks()
+  vi.useFakeTimers()
   document.body.innerHTML = `
     <div id="modal">
       <div id="modalContent"></div>
@@ -57,11 +65,20 @@ test('openModal — renders "—" for missing fullName', () => {
 test('closeModal — removes class "open" from #modal', () => {
   openModal(hero)
   closeModal()
+  vi.advanceTimersByTime(180)
   expect(document.getElementById('modal').classList.contains('open')).toBe(false)
 })
 
 test('closeModal — clears #modalContent', () => {
   openModal(hero)
   closeModal()
+  vi.advanceTimersByTime(180)
   expect(document.getElementById('modalContent').innerHTML).toBe('')
+})
+
+test('closeModal — calls setActiveHero(null)', () => {
+  openModal(hero)
+  closeModal()
+  vi.advanceTimersByTime(180)
+  expect(setActiveHero).toHaveBeenCalledWith(null)
 })
