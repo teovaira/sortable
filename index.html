@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sortable</title>
+    <link rel="stylesheet" href="./src/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <h1>Superhero Sortable</h1>
+        <p>Search, sort, and compare superheroes.</p>
+    </header>
+
+    <main class="app">
+        <section class="controls">
+            <div class="search-controls">
+                <label for="searchInput">Search</label>
+                <input id="searchInput" type="text" placeholder="Search heroes..." />
+            </div>
+
+            <div class="field-control">
+                <label for="searchField">Search by</label>
+                <select id="searchField">
+                    <option value="name">Name</option>
+                    <option value="biography.fullName">Full name</option>
+                    <option value="powerstats.intelligence">Intelligence</option>
+                    <option value="powerstats.strength">Strength</option>
+                    <option value="powerstats.speed">Speed</option>
+                    <option value="powerstats.durability">Durability</option>
+                    <option value="powerstats.power">Power</option>
+                    <option value="powerstats.combat">Combat</option>
+                    <option value="appearance.race">Race</option>
+                    <option value="appearance.gender">Gender</option>
+                    <option value="appearance.height">Height</option>
+                    <option value="appearance.weight">Weight</option>
+                    <option value="biography.placeOfBirth">Place of birth</option>
+                    <option value="biography.alignment">Alignment</option>
+                </select>
+            </div>
+
+            <div class="page-size-control">
+                <label for="pageSize">Rows</label>
+                <select id="pageSize">
+                    <option value="10">10</option>
+                    <option value="20" selected>20</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                    <option value="all">All</option>
+                </select>
+            </div>
+
+            <p id="resultCount">0 results</p>
+        </section>
+
+        <section class="table-section">
+            <table id="heroTable">
+                <thead>
+                    <tr>
+                        <th data-col="images.xs">Image</th>
+                        <th data-col="name">Name</th>
+                        <th data-col="biography.fullName">Full Name</th>
+                        <th data-col="powerstats.intelligence">Intelligence</th>
+                        <th data-col="powerstats.strength">Strength</th>
+                        <th data-col="powerstats.speed">Speed</th>
+                        <th data-col="powerstats.durability">Durability</th>
+                        <th data-col="powerstats.power">Power</th>
+                        <th data-col="powerstats.combat">Combat</th>
+                        <th data-col="appearance.race">Race</th>
+                        <th data-col="appearance.gender">Gender</th>
+                        <th data-col="appearance.height">Height</th>
+                        <th data-col="appearance.weight">Weight</th>
+                        <th data-col="biography.placeOfBirth">Place of Birth</th>
+                        <th data-col="biography.alignment">Alignment</th>
+                    </tr>
+                </thead>
+
+                <tbody id="heroBody">
+                    <!-- Render rows here -->
+                </tbody>
+            </table>
+        </section>
+
+        <nav id="pagination" aria-label="Pagination">
+            <!-- Render pagination buttons here -->
+        </nav>
+
+        <div id="modal" class="modal">
+            <div id="modalBackdrop" class="modal-backdrop"></div>
+
+            <div class="modal-panel">
+                <button id="modalClose" type="button" aria-label="Close modal">
+                    ×
+                </button>
+
+                <div id="modalContent">
+                    <!-- Render hero details here -->
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <div class="comic-pop pop-pow">POW!</div>
+    <div class="comic-pop pop-bam">BAM!</div>
+    <div class="comic-pop pop-zap">ZAP!</div>
+
+    <script type="module" src="./src/app.js"></script>
+    <script type="module" src="./src/pop-up.js"></script>
+</body>
+</html>
