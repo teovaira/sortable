@@ -9,25 +9,6 @@ export function openModal(hero) {
   const modal = document.getElementById('modal')
   const content = document.getElementById('modalContent')
 
-  // Old modal
-  // content.innerHTML = `
-  //   <img src="${hero.images.lg}" alt="${hero.name}" />
-  //   <h2>${hero.name}</h2>
-  //   <p><strong>Full Name:</strong> ${display(hero.biography.fullName)}</p>
-  //   <p><strong>Alignment:</strong> ${display(hero.biography.alignment)}</p>
-  //   <p><strong>Place of Birth:</strong> ${display(hero.biography.placeOfBirth)}</p>
-  //   <p><strong>Gender:</strong> ${display(hero.appearance.gender)}</p>
-  //   <p><strong>Race:</strong> ${display(hero.appearance.race)}</p>
-  //   <p><strong>Height:</strong> ${display(hero.appearance.height?.[1])}</p>
-  //   <p><strong>Weight:</strong> ${display(hero.appearance.weight?.[1])}</p>
-  //   <p><strong>Intelligence:</strong> ${display(hero.powerstats.intelligence)}</p>
-  //   <p><strong>Strength:</strong> ${display(hero.powerstats.strength)}</p>
-  //   <p><strong>Speed:</strong> ${display(hero.powerstats.speed)}</p>
-  //   <p><strong>Durability:</strong> ${display(hero.powerstats.durability)}</p>
-  //   <p><strong>Power:</strong> ${display(hero.powerstats.power)}</p>
-  //   <p><strong>Combat:</strong> ${display(hero.powerstats.combat)}</p>
-  // `
-
   modal.classList.remove('closing')
 
   content.innerHTML = `
@@ -115,14 +96,12 @@ export function closeModal() {
 
   if (!modal.classList.contains('open')) return
 
+  setActiveHero(null)
   modal.classList.add('closing')
 
   setTimeout(() => {
     modal.classList.remove('open')
     modal.classList.remove('closing')
     content.innerHTML = ''
-    setActiveHero(null)
   }, 180)
 }
-
-document.getElementById("modalClose").addEventListener("click", e => {closeModal()})
