@@ -31,13 +31,13 @@ Open `index.html` directly in a browser — no build step required.
 sortable/
 ├── index.html
 ├── src/
-│   ├── app.js        — boot, event wiring
-│   ├── data.js       — fetch, cache, field helpers
-│   ├── state.js      — single source of truth, sort/filter/pagination
-│   ├── table.js      — DOM rendering
-│   ├── search.js     — query parsing and filtering
-│   ├── modal.js      — hero detail view
-│   ├── pop-up.js     — comic click effect
+│   ├── app.js            — boot, event wiring
+│   ├── data.js           — fetch, cache, field helpers
+│   ├── state.js          — single source of truth, sort/filter/pagination
+│   ├── table.js          — DOM rendering
+│   ├── search.js         — query parsing and filtering
+│   ├── modal.js          — hero detail view
+│   ├── pop-up.js         — comic click effect
 │   └── style.css
 ├── tests/
 │   ├── data.test.js
@@ -45,12 +45,20 @@ sortable/
 │   ├── table.test.js
 │   ├── search.test.js
 │   └── modal.test.js
-└── docs/
-    └── data-review.md
+├── docs/
+│   ├── INSTRUCTIONS.md
+│   └── AUDIT.md
+├── .gitignore
+├── package.json
+├── package-lock.json
+├── vitest.config.js
+├── CHANGELOG.md
+├── CONTRIBUTING.md
+└── LICENSE.md
 ```
 
 ## Team
 
 - **Theodore Vairaktaris** — search, modal, tests, docs
 - **Stavros Gkraikas** — state, table, app
-- **Christoforos Kotsalas** — data, HTML, CSS, pop-up
+- **Christoforos Kotsalas** — data, HTML, CSS, pop-up, docs
