@@ -60,5 +60,5 @@ sortable/
 ## Team
 
 - **Theodore Vairaktaris** — search, modal, tests, docs
-- **Stavros Gkraikas** — state, table, app
-- **Christoforos Kotsalas** — data, HTML, CSS, pop-up, docs
+- **Stavros Gkraikas** — state, table, app, tests
+- **Christoforos Kotsalas** — data, HTML, CSS, pop-up, tests docs
