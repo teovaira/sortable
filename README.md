@@ -18,12 +18,26 @@ No frameworks. No libraries. Fetch, ES modules, and the DOM.
 ## Getting started
 
 ```bash
+git clone https://platform.zone01.gr/git/tvairakt/sortable.git
+cd sortable
 npm install
-npm test        # run tests once
+```
+
+Run the tests:
+
+```bash
+npm test            # run once
 npm run test:watch  # re-run on file save
 ```
 
-Open `index.html` directly in a browser — no build step required.
+Run the app — open `index.html` in a browser. No build step required.
+
+Because the app uses ES modules, some browsers block `file://` URLs. If `index.html` loads but stays blank, serve the folder over HTTP:
+
+```bash
+npx serve .
+# then open http://localhost:3000
+```
 
 ## Project structure
 
