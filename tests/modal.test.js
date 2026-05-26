@@ -79,9 +79,6 @@ test('closeModal — clears #modalContent', () => {
 test('closeModal — calls setActiveHero(null)', () => {
   openModal(hero)
   closeModal()
-<<<<<<< HEAD
-=======
   vi.advanceTimersByTime(180)
->>>>>>> dev-ckotsalas
   expect(setActiveHero).toHaveBeenCalledWith(null)
 })
