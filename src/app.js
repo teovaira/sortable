@@ -12,6 +12,7 @@ import {
 } from './state.js'
 import { renderPagination, renderRows, updateSortHeaders } from './table.js'
 import { closeModal, openModal } from './modal.js'
+import './pop-up.js'
 
 // Boot starts by loading the remote data. fetchHeroes owns caching and network
 // failure handling, so app.js only decides what to render with the result.
