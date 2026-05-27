@@ -100,6 +100,9 @@ export function parseMetricNumber(str) {
 }
 
 // Delays fn by ms. Use on search input to avoid lag.
+// debounce() returns a debounced version of the function.
+// The debounced function delays invoking fn until after ms milliseconds
+// have elapsed since the last time the debounced function was invoked.
 export function debounce(fn, ms) {
     let timeoutId
 
