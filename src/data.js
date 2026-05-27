@@ -5,7 +5,6 @@ let heroesCache = null
 // Fetches once, caches result. Returns null on failure.
 export async function fetchHeroes() {
     if (heroesCache) {
-        console.log('already fetched, using cache')
         return heroesCache
     }
 
@@ -91,9 +90,9 @@ export function parseMetricNumber(str) {
         return null
     }
 
-    const number = parseInt(str)
+    const number = parseFloat(str)
 
-    if (!number) {
+    if (isNaN(number) || number === 0) {
         return null
     }
 
