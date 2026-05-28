@@ -1,4 +1,4 @@
-import { getCurrentPage, setPage, state } from './state.js'
+import { getCurrentPage, setPage, state, syncURL } from './state.js'
 
 // Column order mirrors the project table contract and the <th data-col> values
 // from index.html. Keeping it in one array makes row rendering predictable.
@@ -90,6 +90,7 @@ export function renderPagination() {
   pagination.querySelectorAll('button').forEach(button => {
     button.addEventListener('click', () => {
       setPage(Number(button.dataset.page))
+      syncURL()
       renderRows(getCurrentPage())
       renderPagination()
     })
