@@ -90,6 +90,21 @@ test('parseMetricNumber — returns null for missing, placeholder, or zero metri
   expect(parseMetricNumber('0 cm')).toBeNull()
 })
 
+test('parseMetricNumber — converts tons to kilograms', () => {
+  expect(parseMetricNumber('2 tons')).toBe(2000)
+  expect(parseMetricNumber('16 tons')).toBe(16000)
+})
+
+test('parseMetricNumber — converts meters to centimeters', () => {
+  expect(parseMetricNumber('30.5 meters')).toBe(3050)
+  expect(parseMetricNumber('61.0 meters')).toBe(6100)
+})
+
+test('parseMetricNumber — strips commas for thousands separators', () => {
+  expect(parseMetricNumber('9,000 tons')).toBe(9_000_000)
+  expect(parseMetricNumber('90,000 tons')).toBe(90_000_000)
+})
+
 // debounce
 test('debounce — delays function until timeout expires', () => {
   vi.useFakeTimers()
