@@ -1,4 +1,6 @@
-/* Theme variables */
+/* ============================================================
+   THEME VARIABLES
+   ============================================================ */
 :root {
   --paper: #f8e8b8;
   --ink: #111111;
@@ -8,7 +10,9 @@
   --white: #fffaf0;
 }
 
-/* Base page setup */
+/* ============================================================
+   BASE PAGE SETUP
+   ============================================================ */
 * {
   box-sizing: border-box;
 }
@@ -23,7 +27,9 @@ body {
   background-size: 10px 10px, 100% 100%;
 }
 
-/* Site header */
+/* ============================================================
+   SITE HEADER
+   ============================================================ */
 .site-header {
   position: relative;
   max-width: 1100px;
@@ -55,7 +61,9 @@ body {
   color: var(--white);
 }
 
-/* Search and table controls */
+/* ============================================================
+   SEARCH AND TABLE CONTROLS
+   ============================================================ */
 .controls {
   max-width: 1300px;
   margin: 0 auto 28px;
@@ -104,7 +112,9 @@ body {
   box-shadow: 4px 4px 0 var(--ink);
 }
 
-/* Hero table */
+/* ============================================================
+   HERO TABLE
+   ============================================================ */
 .table-section {
   max-width: 1400px;
   margin: 0 auto;
@@ -172,7 +182,9 @@ td img {
   color: var(--yellow);
 }
 
-/* Pagination */
+/* ============================================================
+   PAGINATION
+   ============================================================ */
 #pagination {
   max-width: 1400px;
   margin: 28px auto 40px;
@@ -225,7 +237,9 @@ td img {
   transform: translate(-2px, -2px) rotate(-2deg);
 }
 
-/* Decorative comic words */
+/* ============================================================
+   DECORATIVE COMIC WORDS
+   ============================================================ */
 .comic-pop {
   position: fixed;
   z-index: -1;
@@ -263,7 +277,9 @@ td img {
   animation-delay: 1.3s;
 }
 
-/* Floating comic word animation */
+/* ============================================================
+   FLOATING COMIC WORD ANIMATION
+   ============================================================ */
 @keyframes comicFloat {
   0%, 100% {
     translate: 0 0;
@@ -274,7 +290,9 @@ td img {
   }
 }
 
-/* Modal shell and panel */
+/* ============================================================
+   MODAL SHELL AND PANEL
+   ============================================================ */
 .modal {
   display: none;
 }
@@ -321,7 +339,9 @@ td img {
   }
 }
 
-/* Modal close button and open/close animations */
+/* ============================================================
+   MODAL CLOSE BUTTON AND OPEN/CLOSE ANIMATIONS
+   ============================================================ */
 #modalClose {
   position: absolute;
   top: 10px;
@@ -354,7 +374,9 @@ td img {
   animation: modalPopOut 180ms ease-in forwards;
 }
 
-/* Modal keyframes */
+/* ============================================================
+   MODAL KEYFRAMES
+   ============================================================ */
 @keyframes backdropFadeIn {
   from {
     opacity: 0;
@@ -403,7 +425,9 @@ td img {
   }
 }
 
-/* Click pop-up effect */
+/* ============================================================
+   CLICK POP-UP EFFECT
+   ============================================================ */
 .hit-word {
   position: fixed;
   z-index: 999;
@@ -417,7 +441,9 @@ td img {
   animation: hitPop 700ms ease-out forwards;
 }
 
-/* Click pop-up animation */
+/* ============================================================
+   CLICK POP-UP ANIMATION
+   ============================================================ */
 @keyframes hitPop {
   0% {
     opacity: 0;
@@ -435,7 +461,9 @@ td img {
   }
 }
 
-/* Hero profile modal content */
+/* ============================================================
+   HERO PROFILE MODAL CONTENT
+   ============================================================ */
 .hero-profile {
   position: relative;
   font-family: Arial, Helvetica, sans-serif;
@@ -526,7 +554,9 @@ td img {
   text-transform: uppercase;
 }
 
-/* Hero detail cards */
+/* ============================================================
+   HERO DETAIL CARDS
+   ============================================================ */
 .hero-info-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -558,7 +588,9 @@ td img {
   font-size: 18px;
 }
 
-/* Powerstats panel */
+/* ============================================================
+   POWERSTATS PANEL
+   ============================================================ */
 .powerstats {
   padding: 18px;
   background:
@@ -605,7 +637,9 @@ td img {
   box-shadow: 3px 3px 0 var(--ink);
 }
 
-/* Small-screen layout */
+/* ============================================================
+   SMALL-SCREEN LAYOUT
+   ============================================================ */
 @media (max-width: 650px) {
   .hero-profile-header {
     flex-direction: column;
