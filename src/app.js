@@ -51,7 +51,7 @@ function render() {
 // The count reflects filtered results, not just the current page.
 function updateResultCount() {
   const count = document.getElementById('resultCount')
-  if (count) count.textContent = String(state.filtered.length)
+  if (count) count.textContent = `${state.filtered.length} results`
 }
 
 // All DOM event wiring lives here. Each handler updates state first, then calls
