@@ -83,18 +83,24 @@ export function getWeightMetric(hero) {
     return metricWeight
 }
 
-// Extracts number from metric string. "203 cm" → 203, null → null, "-" → null, "0 cm" → null
+// Extracts a comparable number from a metric string.
+// Weights normalize to kilograms ("2 tons" → 2000). Heights normalize to centimeters
+// ("30.5 meters" → 3050). Commas are stripped so "9,000 tons" parses correctly.
+// Returns null for missing, "-", "0 cm", "0 kg", or unparseable input.
 export function parseMetricNumber(str) {
     if (!str || str === "-") {
         return null
     }
 
-    const number = parseFloat(str)
+    const cleaned = str.replace(/,/g, "")
+    const number = parseFloat(cleaned)
 
     if (isNaN(number) || number === 0) {
         return null
     }
 
+    if (/tons/i.test(cleaned)) return number * 1000
+    if (/meters/i.test(cleaned)) return number * 100
     return number
 }
 
