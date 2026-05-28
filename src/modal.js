@@ -88,6 +88,7 @@ export function openModal(hero) {
 `
 
   modal.classList.add('open')
+  document.getElementById('modalClose')?.focus()
 }
 
 export function closeModal() {
