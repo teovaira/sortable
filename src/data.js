@@ -20,8 +20,7 @@ export async function fetchHeroes() {
         heroesCache = data
 
         return heroesCache
-    } catch (error) {
-        console.log(error)
+    } catch {
         return null
     }
 }
