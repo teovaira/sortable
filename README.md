@@ -1,6 +1,6 @@
 # Sortable
 
-A vanilla JavaScript superhero data table. Search, sort, paginate, and inspect 700+ heroes from the [Superhero API](https://akabab.github.io/superhero-api/).
+A vanilla JavaScript superhero data table. Search, sort, paginate, and inspect 563 heroes from the [Superhero API](https://akabab.github.io/superhero-api/).
 
 No frameworks. No libraries. Fetch, ES modules, and the DOM.
 
@@ -14,6 +14,7 @@ No frameworks. No libraries. Fetch, ES modules, and the DOM.
 - Pagination: 10 / 20 / 50 / 100 / all rows per page
 - Hero detail modal with large image and full stats
 - URL reflects all state — search, sort, page, open hero — shareable and restorable
+- Accessible modal — `role="dialog"`, keyboard focus moves to the close button on open, Escape to close
 
 ## Getting started
 
@@ -59,9 +60,6 @@ sortable/
 │   ├── table.test.js
 │   ├── search.test.js
 │   └── modal.test.js
-├── docs/
-│   ├── INSTRUCTIONS.md
-│   └── AUDIT.md
 ├── .gitignore
 ├── package.json
 ├── package-lock.json
@@ -75,4 +73,4 @@ sortable/
 
 - **Theodore Vairaktaris** — search, modal, tests, docs
 - **Stavros Gkraikas** — state, table, app, tests
-- **Christoforos Kotsalas** — data, HTML, CSS, pop-up, tests docs
+- **Christoforos Kotsalas** — data, HTML, CSS, pop-up, tests
